@@ -4,6 +4,15 @@
   </div>
 </template>
 
+<script>
+  export default {
+    name: "app",
+    created(){
+      this.$store.commit("calendar/setToday", new Date())
+    }
+  }
+</script>
+
 <style lang="scss">
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

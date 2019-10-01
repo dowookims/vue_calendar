@@ -6,30 +6,34 @@
     </div>
     <div class="header__text-day--info">
       <p>{{ this.showKoreanDate }}요일</p>
+      <button @click="setOtherDay(1)">+</button>
+      <button @click="setOtherDay(-1)">-</button>
     </div>
   </header>
 </template>
 
 <script>
+  import { mapGetters, mapMutations } from "vuex"
   export default {
     name: 'Header',
     data(){
       return {
       }
     },
+    methods: {
+      ...mapMutations("calendar", ["setOtherDay"])
+    },
     computed: {
+      ...mapGetters("calendar", ["today"]),
       showDate(){
-        const today = new Date()
-        return today.getDate()
+        return this.today.getDate()
       },
       showDetailDate(){
-        const today = new Date()
-        return `${today.getFullYear()}년 ${today.getMonth()+1}월`
+        return `${this.today.getFullYear()}년 ${this.today.getMonth()+1}월`
       },
       showKoreanDate(){
-        const today = new Date()
         const dayArr = ["일", "월", "화", "수", "목", "금", "토"]
-        return dayArr[today.getDay()]
+        return dayArr[this.today.getDay()]
       }
     }
   }
