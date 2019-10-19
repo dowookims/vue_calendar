@@ -1,8 +1,16 @@
 <template>
-  <div class="home">
-    <Header />
-    <Days />
-    <Dates />
+  <div class="calendar">
+    <div class="side">
+
+    </div>
+    <div class="home">
+      <Header />
+      <Days />
+      <Dates />
+    </div>
+    <div class="todo">
+
+    </div>
   </div>
 </template>
 
@@ -18,3 +26,20 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+  .calendar {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+  }
+  .side {
+    width: 15vw;
+  }
+  .home {
+    width: 60vw;
+  }
+  .todo {
+    width: 25vw;
+  }
+</style>

@@ -31,11 +31,12 @@
 }
 
 .days--text {
+  box-sizing: border-box;
   padding: 6px 0;
   font-weight: 600;
-  border-right: 0.4px solid #999;
-  border-left: 0.4px solid #999;
-  background-color: #BBB;
+  border-right: 0.4px solid #efefef;
+  border-left: 0.4px solid #efefef;
+  background-color: #FAFAFA;
   min-width: 14.285714%;
   max-width: 14.285714%;
   &:first-child {

@@ -11,6 +11,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "DateItem",
   props: ["week", "idx"],
+  // today에서, 같은 일자면 다른 월에도 같이 표시되는거 수정해야 한다.
   computed: {
     ...mapGetters("calendar", ["today", "baseDay", "baseFirstDay", "baseLastDate", "baseLastMonthDate"]),
     getNum(){
@@ -40,11 +41,15 @@ export default {
 
 <style lang="scss" scoped>
 .date--container-date {
+  box-sizing: border-box;
   min-width: 14.285714%;
   max-width: 14.285714%;
   height: 15vh;
   padding: 6px 0;
-  border: 0.4px solid #aaa;
+  border: 0.4px solid #eaeaea;
+  span {
+    font-weight: 700;
+  }
   &:first-child {
     color: red;
   }
@@ -54,11 +59,19 @@ export default {
 }
 
 .today {
-  border: 0.4px solid #333;
-  background-color: #eee;
+  border: 0.4px solid #0E28F7;
+  span {
+    display: inline-block;
+    background-color: #0E28F7;
+    padding: 2px;
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    border-radius: 50%;
+  }
 }
 
 .last {
-  background-color: #aaa;
+  background-color: #f9f9f9;
 }
 </style>
