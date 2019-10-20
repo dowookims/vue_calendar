@@ -1,6 +1,9 @@
 <template>
   <div class="date--container">
-    <div class="date--container-week" v-for="week in calWeeks" :key="week">
+    <div class="date--container-week" 
+      v-for="week in calWeeks" 
+      :key="week"
+      :style="{ height: 'calc((85vh - 30px)/' + calWeeks + ')'}">
       <DateItem v-for="idx in 7" :key="idx" :idx="idx" :week="week" />
     </div>
   </div>
@@ -26,7 +29,7 @@ export default {
       } else {
         return w + 1;
       }
-    }
+    },
   }
 };
 </script>

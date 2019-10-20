@@ -59,7 +59,7 @@ export default {
   box-sizing: border-box;
   min-width: 14.285714%;
   max-width: 14.285714%;
-  height: 15vh;
+  height: 100%;
   padding: 6px 0;
   border: 0.4px solid #eaeaea;
   span {
