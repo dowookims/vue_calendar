@@ -13,6 +13,10 @@ export default {
     this.$store.commit("calendar/setBaseFirstDay");
     this.$store.commit("calendar/setBaseLastDate");
     this.$store.commit("calendar/setBaseLastMonthDate");
+    this.$store.commit(
+      "calendar/setSelectDate",
+      this.$store.state["calendar"].baseDay.getDate()
+    );
   }
 };
 </script>

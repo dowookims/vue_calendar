@@ -3,7 +3,8 @@ const state = {
   baseDay: "",
   baseFirstDay: "",
   baseLastDate: "",
-  baseLastMonthDate: ""
+  baseLastMonthDate: "",
+  selectDate: ""
 };
 
 const getters = {
@@ -11,7 +12,8 @@ const getters = {
   baseDay: state => state.baseDay,
   baseFirstDay: state => state.baseFirstDay,
   baseLastDate: state => state.baseLastDate,
-  baseLastMonthDate: state => state.baseLastMonthDate
+  baseLastMonthDate: state => state.baseLastMonthDate,
+  selectDate: state => state.selectDate
 };
 
 const actions = {};
@@ -59,6 +61,13 @@ const mutations = {
       0
     );
     state.baseLastMonthDate = lastMonthLastDay.getDate();
+  },
+  setSelectDate: (state, payload) => {
+    state.selectDate = new Date(
+      state.baseDay.getFullYear(),
+      state.baseDay.getMonth(),
+      payload
+    );
   }
 };
 

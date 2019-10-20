@@ -17,7 +17,7 @@
 import Header from "@/components/Header";
 import Days from "@/components/Date/Days";
 import Dates from "@/components/Date/Dates";
-import Todo from "@/components/Todo"
+import Todo from "@/components/Todo";
 export default {
   name: "home",
   components: {
