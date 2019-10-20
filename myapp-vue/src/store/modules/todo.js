@@ -13,8 +13,15 @@ const state = {
       {
         id: 1,
         content: "bulabula",
-        start: "",
-        end: "",
+        start: new Date("2019/10/20/00:00:00"),
+        end: new Date("2019/10/20/23:59:59"),
+        fin: false
+      },
+      {
+        id: 2,
+        content: "정수원 바보",
+        start: new Date("2019/10/20/12:56:00"),
+        end: new Date("2019/10/20/23:59:59"),
         fin: false
       }
     ],

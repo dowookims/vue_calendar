@@ -1,19 +1,11 @@
 <template>
   <div class="todo--div">
     <p>TODO LIST</p>
-    {{ getThisMonthTodos[0].id }}
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
 export default {
-  computed: {
-    ...mapGetters('calendar', ["baseDay"]),
-    ...mapGetters('todo', ["todos"]),
-    getThisMonthTodos(){
-      return this.todos[this.baseDay.getMonth()]
-    }
-  }
+  
 }
 </script>
 <style lang="scss" scoped>
