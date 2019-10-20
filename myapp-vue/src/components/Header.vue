@@ -12,7 +12,7 @@
       <button @click="changeMonth(-1)">&lt;</button>
       <span>{{ englishMonth }}</span>
       <span>{{ selectedYear }}</span>
-      
+
       <button @click="changeMonth(1)">&gt;</button>
     </div>
   </header>
@@ -23,16 +23,14 @@ import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "Header",
   methods: {
-    ...mapMutations("calendar",
-      [
-        "setBaseOtherDay",
-        "setBaseFirstDay",
-        "setBaseLastDate",
-        "setBaseLastMonthDate"
-      ]
-    ),
+    ...mapMutations("calendar", [
+      "setBaseOtherDay",
+      "setBaseFirstDay",
+      "setBaseLastDate",
+      "setBaseLastMonthDate"
+    ]),
     // 나중에 연도 변할시 값 이상하게 변하는거 이유 확인 및 체크할 것
-    changeMonth(n){
+    changeMonth(n) {
       this.setBaseOtherDay(n);
       this.setBaseFirstDay();
       this.setBaseLastDate();
@@ -41,29 +39,43 @@ export default {
   },
   computed: {
     ...mapGetters("calendar", ["today", "baseDay"]),
-    showDate(){
-      return this.today.getDate()
+    showDate() {
+      return this.today.getDate();
     },
-    showDetailDate(){
-      return `${this.today.getFullYear()}년 ${this.today.getMonth()+1}월`
+    showDetailDate() {
+      return `${this.today.getFullYear()}년 ${this.today.getMonth() + 1}월`;
     },
-    showKoreanDate(){
-      const dayArr = ["일", "월", "화", "수", "목", "금", "토"]
-      return dayArr[this.today.getDay()]
+    showKoreanDate() {
+      const dayArr = ["일", "월", "화", "수", "목", "금", "토"];
+      return dayArr[this.today.getDay()];
     },
-    selectedYear(){
-      return this.baseDay.getFullYear() | this.today.getFullYear()
+    selectedYear() {
+      return this.baseDay.getFullYear() || this.today.getFullYear();
     },
-    selectedMonth(){
-      return this.baseDay.getMonth() ? this.baseDay.getMonth()+1 : this.today.getMonth()+1
+    selectedMonth() {
+      return this.baseDay.getMonth()
+        ? this.baseDay.getMonth() + 1
+        : this.today.getMonth() + 1;
     },
-    englishMonth(){
-      const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-      return this.baseDay.getMonth() ? month[this.baseDay.getMonth()] : month[this.today.getMonth()]
+    englishMonth() {
+      const month = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ];
+      return month[this.baseDay.getMonth()] || month[this.today.getMonth()];
     }
   }
-}
-
+};
 </script>
 
 <style lang="scss" scoped>
@@ -71,7 +83,7 @@ export default {
   display: flex;
   align-items: center;
   height: 15vh;
-  background-color: #0E28F7;
+  background-color: #0e28f7;
   color: #fff;
 }
 
@@ -101,7 +113,7 @@ export default {
   button {
     outline: none;
     border: none;
-    background-color: #0E28F7;
+    background-color: #0e28f7;
     font-weight: 700;
     font-size: 24px;
     color: #fff;
@@ -120,5 +132,4 @@ export default {
     margin-left: 15px;
   }
 }
-
 </style>

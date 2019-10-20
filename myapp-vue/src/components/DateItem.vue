@@ -1,7 +1,8 @@
 <template>
-  <div 
-  class="date--container-date"
-  :class="{ today : isToday & !notThisMonth, last : notThisMonth }">
+  <div
+    class="date--container-date"
+    :class="{ today: isToday && !notThisMonth, last: notThisMonth }"
+  >
     <span>{{ getNum }} </span>
   </div>
 </template>
@@ -11,32 +12,46 @@ import { mapGetters } from "vuex";
 export default {
   name: "DateItem",
   props: ["week", "idx"],
-  // today에서, 같은 일자면 다른 월에도 같이 표시되는거 수정해야 한다.
   computed: {
-    ...mapGetters("calendar", ["today", "baseDay", "baseFirstDay", "baseLastDate", "baseLastMonthDate"]),
-    getNum(){
+    ...mapGetters("calendar", [
+      "today",
+      "baseDay",
+      "baseFirstDay",
+      "baseLastDate",
+      "baseLastMonthDate"
+    ]),
+    getNum() {
+      return this.idx + (this.week - 1) * 7 > this.baseFirstDay
+        ? this.idx + (this.week - 1) * 7 - this.baseFirstDay <=
+          this.baseLastDate
+          ? this.idx + (this.week - 1) * 7 - this.baseFirstDay
+          : this.idx +
+            (this.week - 1) * 7 -
+            this.baseFirstDay -
+            this.baseLastDate
+        : this.baseLastMonthDate - this.baseFirstDay + this.idx;
+    },
+    isToday() {
       return (
-        this.idx + ((this.week-1) * 7) > this.baseFirstDay
-        ? this.idx + ((this.week-1) * 7) - this.baseFirstDay < this.baseLastDate +1
-          ? this.idx + ((this.week-1) * 7) - this.baseFirstDay
-          : this.idx + ((this.week-1) * 7) - this.baseFirstDay - this.baseLastDate
-        : this.baseLastMonthDate - this.baseFirstDay + this.idx
-      )
+        this.today.getDate() === this.getNum &&
+        this.today.getMonth() === this.baseDay.getMonth() &&
+        this.today.getFullYear() === this.baseDay.getFullYear()
+      );
     },
-    isToday(){
-      return this.today.getDate() === this.getNum;
-    },
-    notThisMonth(){
-      if (this.idx + ((this.week -1) * 7) < this.baseFirstDay + 1 ){
+    notThisMonth() {
+      if (this.idx + (this.week - 1) * 7 <= this.baseFirstDay) {
         return true;
-      } else if(this.idx + ((this.week -1) * 7) > this.baseLastDate + this.baseFirstDay) {
+      } else if (
+        this.idx + (this.week - 1) * 7 >
+        this.baseLastDate + this.baseFirstDay
+      ) {
         return true;
       } else {
         return false;
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -59,10 +74,10 @@ export default {
 }
 
 .today {
-  border: 0.4px solid #0E28F7;
+  border: 0.4px solid #0e28f7;
   span {
     display: inline-block;
-    background-color: #0E28F7;
+    background-color: #0e28f7;
     padding: 2px;
     width: 20px;
     height: 20px;

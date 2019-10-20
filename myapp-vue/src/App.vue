@@ -5,16 +5,16 @@
 </template>
 
 <script>
-  export default {
-    name: "app",
-    created(){
-      this.$store.commit("calendar/setToday", new Date())
-      this.$store.commit("calendar/setBaseDay", new Date())
-      this.$store.commit("calendar/setBaseFirstDay")
-      this.$store.commit("calendar/setBaseLastDate")
-      this.$store.commit("calendar/setBaseLastMonthDate")
-    }
+export default {
+  name: "app",
+  created() {
+    this.$store.commit("calendar/setToday", new Date());
+    this.$store.commit("calendar/setBaseDay", new Date());
+    this.$store.commit("calendar/setBaseFirstDay");
+    this.$store.commit("calendar/setBaseLastDate");
+    this.$store.commit("calendar/setBaseLastMonthDate");
   }
+};
 </script>
 
 <style lang="scss">
@@ -25,5 +25,4 @@
   text-align: center;
   color: #2c3e50;
 }
-
 </style>

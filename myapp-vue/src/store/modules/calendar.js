@@ -20,10 +20,21 @@ const mutations = {
   setToday: state => (state.today = new Date()),
   setBaseDay: state => (state.baseDay = new Date()),
   setBaseOtherDay: (state, payload) => {
-    state.baseDay = new Date(
-      state.baseDay.getFullYear(),
-      state.baseDay.getMonth() + payload
-    );
+    if (state.baseDay.getMonth() + payload === 12) {
+      state.baseDay = new Date(
+        `${state.baseDay.getFullYear() + 1}/01/01/0:0:0`
+      );
+    } else if (state.baseDay.getMonth() + payload === -1) {
+      state.baseDay = new Date(
+        `${state.baseDay.getFullYear() - 1}/12/01/0:0:0`
+      );
+    } else {
+      state.baseDay = new Date(
+        state.baseDay.getFullYear(),
+        state.baseDay.getMonth() + payload + 1,
+        0
+      );
+    }
   },
   setBaseFirstDay: state => {
     const monthFirst = new Date(
@@ -34,12 +45,12 @@ const mutations = {
     state.baseFirstDay = monthFirst.getDay();
   },
   setBaseLastDate: state => {
-    const lastDate = new Date(
+    const d = new Date(
       state.baseDay.getFullYear(),
       state.baseDay.getMonth() + 1,
       0
     );
-    state.baseLastDate = lastDate.getDate();
+    state.baseLastDate = d.getDate();
   },
   setBaseLastMonthDate: state => {
     const lastMonthLastDay = new Date(
