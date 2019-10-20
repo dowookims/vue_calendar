@@ -6,21 +6,25 @@
       <Days />
       <Dates />
     </div>
-    <div class="todo"></div>
+    <div class="todo">
+      <Todo />
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Header from "@/components/Header";
-import Days from "@/components/Days";
-import Dates from "@/components/Dates";
+import Days from "@/components/Date/Days";
+import Dates from "@/components/Date/Dates";
+import Todo from "@/components/Todo"
 export default {
   name: "home",
   components: {
     Header,
     Days,
-    Dates
+    Dates,
+    Todo
   }
 };
 </script>
