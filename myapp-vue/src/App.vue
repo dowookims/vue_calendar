@@ -8,11 +8,13 @@
 export default {
   name: "app",
   created() {
-    this.$store.commit("calendar/setToday", new Date());
-    this.$store.commit("calendar/setBaseDay", new Date());
+    const today = new Date();
+    this.$store.commit("calendar/setToday", today);
+    this.$store.commit("calendar/setBaseDay", today);
     this.$store.commit("calendar/setBaseFirstDay");
     this.$store.commit("calendar/setBaseLastDate");
     this.$store.commit("calendar/setBaseLastMonthDate");
+    this.$store.commit("calendar/setSelectMonth", today.getMonth() + 1);
     this.$store.commit(
       "calendar/setSelectDate",
       this.$store.state["calendar"].baseDay.getDate()

@@ -1,6 +1,8 @@
 <template>
   <div class="calendar">
-    <div class="side"></div>
+    <div class="side">
+      <Side />
+    </div>
     <div class="home">
       <Header />
       <Days />
@@ -18,13 +20,15 @@ import Header from "@/components/Header";
 import Days from "@/components/Date/Days";
 import Dates from "@/components/Date/Dates";
 import Todo from "@/components/Todo";
+import Side from "@/components/Side";
 export default {
   name: "home",
   components: {
     Header,
     Days,
     Dates,
-    Todo
+    Todo,
+    Side
   }
 };
 </script>
