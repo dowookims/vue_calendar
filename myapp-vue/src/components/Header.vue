@@ -6,10 +6,11 @@
 </template>
 
 <script>
-import { mapStates, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters("calendar", ["today", "baseDay"]),
+    ...mapGetters("todo", ["todos"]),
     getYear() {
       return this.baseDay
         ? this.baseDay.getFullYear()

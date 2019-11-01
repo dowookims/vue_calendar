@@ -2,7 +2,7 @@
   <div class="side--div">
     <div class="side--div-year">
       <span class="year--button" @click="changeYear(-1)">&lt;</span>
-      <span>{{selectedYear}}</span>
+      <span>{{ selectedYear }}</span>
       <span class="year--button" @click="changeYear(1)">&gt;</span>
     </div>
     <div
@@ -10,9 +10,10 @@
       v-for="(month, idx) in 12"
       :key="idx"
       @click="changeMonth(month)"
-      :class="{ active : selectMonth === month}"
+      :class="{ active: getMonth === month }"
     >
       <span>{{ englishMonth(idx) }}</span>
+      <span>{{ getMonthTodoCount(month) }}</span>
     </div>
   </div>
 </template>
@@ -34,7 +35,6 @@ export default {
       this.setBaseFirstDay();
       this.setBaseLastDate();
       this.setBaseLastMonthDate();
-      this.setSelectMonth(n);
     },
     changeYear(n) {
       this.setOtherYear(n);
@@ -58,12 +58,27 @@ export default {
         "Dec"
       ];
       return month[num];
+    },
+    getMonthTodoCount(m) {
+      const num = parseInt(m);
+      if (this.todos[num - 1].valueOf("counts").counts) {
+        return this.todos[num - 1].counts;
+      } else {
+        return 0;
+      }
     }
   },
+
   computed: {
     ...mapGetters("calendar", ["today", "baseDay", "selectMonth"]),
+    ...mapGetters("todo", ["todos"]),
     selectedYear() {
       return this.baseDay.getFullYear() || this.today.getFullYear();
+    },
+    getMonth() {
+      return this.baseDay
+        ? this.baseDay.getMonth() + 1
+        : this.today.getMonth() + 1;
     }
   }
 };
