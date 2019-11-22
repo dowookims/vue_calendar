@@ -4,22 +4,29 @@
     :class="{ today: isToday && !notThisMonth, last: notThisMonth }"
     @click="handleClick(getNum)"
   >
-    <span>{{ getNum }} </span>
+    <div>
+      <span>{{ getNum }}</span>
+    </div>
+    <div></div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "DateItem",
   props: ["week", "idx"],
   methods: {
     handleClick(n) {
-      this.$store.commit("calendar/setSelectDate", n);
+      const param = {
+        day: n,
+        thisMonth: !this.notThisMonth
+      };
+      this.$store.commit("calendar/setSelectDate", param);
     }
   },
   computed: {
-    ...mapGetters("calendar", [
+    ...mapState("calendar", [
       "today",
       "baseDay",
       "baseFirstDay",
@@ -70,30 +77,32 @@ export default {
   min-width: 14.285714%;
   max-width: 14.285714%;
   height: 100%;
-  padding: 6px 0;
-  border: 0.4px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
   cursor: pointer;
-  span {
-    font-weight: 700;
+  div:first-child {
+    text-align: center;
+    height: 20px;
+    background-color: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+    color: #777;
+    span {
+      font-size: 18px;
+      font-weight: 700;
+    }
   }
-  &:first-child {
-    color: red;
-  }
-  &:last-child {
-    color: royalblue;
+  div:last-child {
+    background-color: #fff;
   }
 }
 
 .today {
-  border: 0.4px solid #0e28f7;
+  box-sizing: border-box;
+  border: 2px solid #ff6813;
   span {
-    display: inline-block;
-    background-color: #0e28f7;
-    padding: 2px;
-    width: 20px;
-    height: 20px;
-    color: #fff;
-    border-radius: 50%;
+    color: #ff6813;
   }
 }
 

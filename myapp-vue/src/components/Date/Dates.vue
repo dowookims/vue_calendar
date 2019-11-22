@@ -41,5 +41,6 @@ export default {
   flex-direction: row;
   max-width: 100vw;
   overflow: visible;
+  border: 0 1px solid #f0f0f0;
 }
 </style>

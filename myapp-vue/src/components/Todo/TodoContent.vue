@@ -1,9 +1,6 @@
 <template>
   <section>
-    <article
-      v-for="(todo, idx) in getSelectDatetodo"
-      :key="todo.content + todo.id + idx"
-    >
+    <article v-for="(todo, idx) in getSelectDatetodo" :key="todo.content + todo.id + idx">
       <p>
         <span>{{ getTextTodo(todo) }}</span>
         <span>{{ todo.content }}</span>
@@ -44,8 +41,8 @@ export default {
     },
     handleRemove(idx) {
       const payload = {
-        month: this.selectDate.getMonth(),
-        date: this.selectDate.getDate(),
+        month: this.getSelectDate.getMonth(),
+        date: this.getSelectDate.getDate(),
         idx
       };
       this.$store.commit("todo/deleteTodos", payload);
@@ -53,8 +50,8 @@ export default {
     handleUpdate(idx) {
       const id_date = new Date();
       const payload = {
-        month: this.selectDate.getMonth(),
-        date: this.selectDate.getDate(),
+        month: this.getSelectDate.getMonth(),
+        date: this.getSelectDate.getDate(),
         idx,
         content: {
           id: id_date.toString(),
@@ -72,10 +69,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("calendar", ["baseDay", "selectDate"]),
+    ...mapGetters("calendar", ["getBaseDay", "getSelectDate"]),
     ...mapGetters("todo", ["todos"]),
     getSelectDatetodo() {
-      return this.todos[this.selectDate.getMonth()][this.selectDate.getDate()];
+      return this.todos[this.getSelectDate.getMonth()][
+        this.getSelectDate.getDate()
+      ];
     }
   }
 };

@@ -47,11 +47,6 @@ const mutations = {
 		} else {
 			state.todos[payload.month][payload.date] = [payload.content];
 			// this is for vue reaction
-			if (state.todos[payload.month].counts) {
-				state.todos[payload.month].counts += 1;
-			} else {
-				state.todos[payload.month].counts = 1;
-			}
 			state.todos.push("reaction");
 			state.todos.splice(-1, 1);
 		}

@@ -58,27 +58,27 @@ export default {
         "Dec"
       ];
       return month[num];
-    },
-    getMonthTodoCount(m) {
-      const num = parseInt(m);
-      if (this.todos[num - 1].valueOf("counts").counts) {
-        return this.todos[num - 1].counts;
-      } else {
-        return 0;
-      }
     }
   },
 
   computed: {
-    ...mapGetters("calendar", ["today", "baseDay", "selectMonth"]),
+    ...mapGetters("calendar", ["getToday", "getBaseDay", "getSelectMonth"]),
     ...mapGetters("todo", ["todos"]),
     selectedYear() {
-      return this.baseDay.getFullYear() || this.today.getFullYear();
+      return this.getBaseDay.getFullYear() || this.getToday.getFullYear();
     },
     getMonth() {
-      return this.baseDay
-        ? this.baseDay.getMonth() + 1
-        : this.today.getMonth() + 1;
+      return this.getBaseDay
+        ? this.getBaseDay.getMonth() + 1
+        : this.getToday.getMonth() + 1;
+    },
+    getMonthTodoCount(m) {
+      const num = parseInt(m);
+      let todoCount = 0;
+      for (let item in this.todos[num - 1]) {
+        todoCount += 1;
+      }
+      return todoCount;
     }
   }
 };

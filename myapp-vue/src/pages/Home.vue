@@ -1,15 +1,9 @@
 <template>
   <div class="calendar">
-    <div class="side">
-      <Side />
-    </div>
     <div class="home">
       <Header />
       <Days />
       <Dates />
-    </div>
-    <div class="todo">
-      <Todo />
     </div>
   </div>
 </template>
@@ -19,16 +13,12 @@
 import Header from "@/components/Header";
 import Days from "@/components/Date/Days";
 import Dates from "@/components/Date/Dates";
-import Todo from "@/components/Todo";
-import Side from "@/components/Side";
 export default {
   name: "home",
   components: {
     Header,
     Days,
-    Dates,
-    Todo,
-    Side
+    Dates
   }
 };
 </script>
@@ -36,16 +26,13 @@ export default {
 <style lang="scss" scoped>
 .calendar {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
 }
-.side {
-  width: 15vw;
-}
+
 .home {
-  width: 60vw;
-}
-.todo {
-  width: 25vw;
+  width: 80%;
+  margin-left: 10%;
+  overflow-y: auto;
 }
 </style>
