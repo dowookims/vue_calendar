@@ -1,6 +1,8 @@
 <template>
   <div class="days--container">
-    <div class="days--text" v-for="(day, idx) in days" :key="idx">{{ day }}</div>
+    <div class="days--text" v-for="(day, idx) in days" :key="idx">
+      {{ day }}
+    </div>
   </div>
 </template>
 

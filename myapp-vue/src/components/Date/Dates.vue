@@ -4,7 +4,7 @@
       class="date--container-week"
       v-for="week in calWeeks"
       :key="week"
-      :style="{ height: 'calc((85vh - 30px)/' + calWeeks + ')' }"
+      :style="{ height: 'calc((90vh - 30px)/' + calWeeks + ')' }"
     >
       <DateItem v-for="idx in 7" :key="idx" :idx="idx" :week="week" />
     </div>
